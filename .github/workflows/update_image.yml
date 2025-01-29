@@ -2,7 +2,8 @@ name: Update Image Every Hour
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour (6am, 7am, 8am, ...)
+    - cron: '*/10 * * * *'
+
 
   workflow_dispatch:  # Allows manual triggering
 

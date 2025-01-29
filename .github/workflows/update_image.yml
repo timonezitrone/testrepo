@@ -13,7 +13,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Clones the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # Disable default GitHub token
+
 
       - name: Set Up Python
         uses: actions/setup-python@v4
@@ -30,6 +33,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add .
-          git commit -m "Auto-update image" || exit 0  # Prevent failure if no changes
-          git push
+          git add challenge_of_the_day/
+          git commit -m "Auto-update image" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/timonezitrone/testrepo.git
